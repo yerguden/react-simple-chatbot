@@ -52,6 +52,7 @@ class ChatBot extends Component {
       customDelay,
       userAvatar,
       userDelay,
+      initialRenderedSteps,
     } = this.props;
     const steps = {};
 
@@ -78,6 +79,7 @@ class ChatBot extends Component {
       );
     }
 
+    //
     schema.checkInvalidIds(steps);
 
     const {
@@ -89,6 +91,7 @@ class ChatBot extends Component {
       cache: this.props.cache,
       firstStep: this.props.steps[0],
       steps,
+      initialRenderedSteps,
     }, () => {
       // focus input if last step cached is a user step
       this.setState({ disabled: false }, () => {
@@ -560,6 +563,7 @@ ChatBot.propTypes = {
   hideHeader: PropTypes.bool,
   hideSubmitButton: PropTypes.bool,
   hideUserAvatar: PropTypes.bool,
+  initialRenderedSteps: PropTypes.array,
   inputStyle: PropTypes.object,
   opened: PropTypes.bool,
   toggleFloating: PropTypes.func,
@@ -589,6 +593,7 @@ ChatBot.defaultProps = {
   hideHeader: false,
   hideSubmitButton: false,
   hideUserAvatar: false,
+  initialRenderedSteps: null,
   inputStyle: {},
   opened: undefined,
   placeholder: 'Type the message ...',

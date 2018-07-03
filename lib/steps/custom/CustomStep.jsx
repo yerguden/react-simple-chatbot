@@ -9,7 +9,8 @@ class CustomStep extends Component {
     super(props);
 
     this.state = {
-      loading: true,
+      // dont enter loading if delay isn't specified
+      loading: Boolean(props.step.delay),
     };
 
     this.renderComponent = this.renderComponent.bind(this);
@@ -19,13 +20,18 @@ class CustomStep extends Component {
     const { step } = this.props;
     const { delay, waitAction } = step;
 
-    setTimeout(() => {
-      this.setState({ loading: false }, () => {
-        if (!waitAction && !step.rendered) {
-          this.props.triggerNextStep();
-        }
-      });
-    }, delay);
+    if (!delay) {
+      // call next step immeadiately if there is no delay
+      this.props.triggerNextStep();
+    } else {
+      setTimeout(() => {
+        this.setState({ loading: false }, () => {
+          if (!waitAction && !step.rendered) {
+            this.props.triggerNextStep();
+          }
+        });
+      }, delay);
+    }
   }
 
   renderComponent() {
