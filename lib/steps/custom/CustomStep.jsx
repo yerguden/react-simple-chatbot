@@ -21,8 +21,10 @@ class CustomStep extends Component {
     const { delay, waitAction } = step;
 
     if (!delay) {
-      // call next step immeadiately if there is no delay
-      this.props.triggerNextStep();
+      if (!waitAction && !step.rendered) {
+        // call next step immeadiately if there is no delay
+        this.props.triggerNextStep();
+      }
     } else {
       setTimeout(() => {
         this.setState({ loading: false }, () => {
