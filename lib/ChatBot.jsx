@@ -507,37 +507,6 @@ class ChatBot extends Component {
           >
             {_.map(renderedSteps, this.renderStep)}
           </Content>
-          <Footer
-            className="rsc-footer"
-            style={footerStyle}
-          >
-            <Input
-              type="textarea"
-              style={inputStyle}
-              innerRef={inputRef => this.input = inputRef}
-              className="rsc-input"
-              placeholder={inputInvalid ? '' : placeholder}
-              onKeyPress={this.handleKeyPress}
-              onChange={this.onValueChange}
-              value={inputValue}
-              floating={floating}
-              invalid={inputInvalid}
-              disabled={disabled}
-              hasButton={!hideSubmitButton}
-            />
-            {
-              !hideSubmitButton &&
-              <SubmitButton
-                className="rsc-submit-button"
-                style={submitButtonStyle}
-                onClick={this.handleSubmitButton}
-                invalid={inputInvalid}
-                disabled={disabled}
-              >
-                <SubmitIcon />
-              </SubmitButton>
-            }
-          </Footer>
         </ChatBotContainer>
       </div>
     );
